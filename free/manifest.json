@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "github中英实时翻译",
+  "short_name": "github中英实时翻译",
+  "version": "1.0.0",
+  "version_name": "1.0.0 免费版",
+  "description": "GitHub 中文导航和红色中英双语正文，支持网页、划词、输入框、文档和字幕翻译。",
+  "minimum_chrome_version": "116",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoj39fM9uj5+4spSen50gwsvGXvd0CK38qrfNHtRJDfwmxCbPItCQmYur/KdXlqhzDhSDF77u609OTARCrwJg7opMJbM90JM5e+7racBrjz9Pyhmaj/kKn8QjKtpfHckVHNvpFw9Yv4xO0C62JvwmGFHfijEmPt7TCVc6LFAaOKkkhU5qLk34P1FePJ0pitB0IYAAdNqGhUOPmp/Jnsw+W9NV0sumDD83E7k+CBCDM9/EIeMn60lsadIDwUv1ik6yQic3ZejVxEIC8sOm7ynyMFa05ix6nlJh44iB5pEIU9U25SlvxWEcYW8/dnG3/GjPywPQUeuQFwOLBMHAANmEOQIDAQAB",
+  "permissions": ["storage", "contextMenus", "sidePanel", "activeTab"],
+  "host_permissions": ["https://edge.microsoft.com/*", "https://translate.googleapis.com/*"],
+  "background": {"service_worker": "background.js"},
+  "icons": {"16":"icons/16.png","32":"icons/32.png","48":"icons/48.png","128":"icons/128.png"},
+  "action": {
+    "default_title": "github中英实时翻译",
+    "default_popup": "panel.html",
+    "default_icon": {"16":"icons/16.png","32":"icons/32.png","48":"icons/48.png","128":"icons/128.png"}
+  },
+  "side_panel": {"default_path":"side-panel.html"},
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'none'; connect-src 'self' https://edge.microsoft.com https://translate.googleapis.com; worker-src 'self'; base-uri 'none'; form-action 'none'"
+  },
+  "commands": {
+    "toggle-page": {"description":"翻译网页 / 显示原文","suggested_key":{"default":"Alt+W"}},
+    "translate-input": {"description":"翻译当前输入框","suggested_key":{"default":"Alt+I"}},
+    "open-side-panel": {"description":"打开翻译侧栏","suggested_key":{"default":"Alt+S"}}
+  },
+  "content_scripts": [
+    {
+      "matches":["https://github.com/*","https://gist.github.com/*","https://skills.github.com/*","https://education.github.com/*","https://www.githubstatus.com/*"],
+      "js":["github/dictionary.js","github/localize.js"],"run_at":"document_idle"
+    },
+    {
+      "matches":["https://*/*","http://*/*","file:///*"],
+      "css":["page.css"],"js":["common.js","page.js","interactions.js","captions.js"],
+      "all_frames":true,"run_at":"document_idle"
+    }
+  ]
+}

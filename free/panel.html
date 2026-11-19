@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>github中英实时翻译</title><link rel="stylesheet" href="panel.css"></head>
+<body>
+<header><img src="icons/48.png" alt="" width="28" height="28"><h1>github中英实时翻译</h1></header>
+<main>
+  <section aria-label="网页翻译">
+    <div class="row"><h2>网页翻译</h2><label class="language">译为 <select id="language"><option value="zh-CN">简体中文</option><option value="en">English</option></select></label></div>
+    <button type="button" class="primary wide" id="toggle" disabled>翻译此页</button>
+    <button type="button" id="retry" hidden>重新翻译</button>
+    <p id="state" role="status"></p>
+    <label class="check"><input id="always" type="checkbox" disabled><span id="always-label">始终翻译此站点</span></label>
+    <label class="check"><input id="localizeGithub" type="checkbox">汉化 GitHub 菜单和按钮</label>
+  </section>
+  <section>
+    <h2><label for="source">文本翻译</label></h2>
+    <textarea id="source" rows="3" placeholder="输入英文或中文"></textarea>
+    <div class="row"><select id="text-language" aria-label="文本翻译方向"><option value="zh-CN">英 → 中</option><option value="en">中 → 英</option></select><button id="translate-text">翻译文本</button></div>
+    <p id="result" aria-live="polite"></p>
+  </section>
+  <div class="row utilities"><a href="documents/index.html" target="_blank" rel="noopener">文档与字幕文件</a><a href="image/index.html" target="_blank" rel="noopener">图片文字识别</a><button type="button" id="side">打开侧栏</button></div>
+  <details><summary>阅读与输入设置</summary>
+    <label class="check"><input id="selectionTools" type="checkbox">划词后显示翻译按钮</label>
+    <label class="check"><input id="hoverTranslate" type="checkbox">按住 Ctrl 悬停翻译</label>
+    <label class="check"><input id="inputTranslate" type="checkbox">输入框翻译（Alt+I 或连续三次空格）</label>
+    <label class="check"><input id="videoCaptions" type="checkbox">视频双语字幕</label>
+    <p class="hint">GitHub 菜单在本机汉化。需要翻译的文字会发送给微软或谷歌的免费网页翻译服务。</p>
+  </details>
+</main>
+<script src="common.js"></script><script src="panel.js"></script>
+</body></html>

@@ -1,0 +1,12 @@
+:root { color-scheme: light dark; font: 16px/1.6 system-ui,sans-serif; }
+body { margin: 0; color: CanvasText; background: Canvas; }
+main { max-width: 720px; margin: 40px auto; padding: 0 24px 32px; }
+h1 { margin: 0; font-size: 1.75rem; }
+p { margin: .35rem 0 1.2rem; }
+label { display: block; font-weight: 600; }
+input, select, textarea, button { box-sizing: border-box; font: inherit; }
+input, textarea { margin-top: 5px; }
+textarea { width: 100%; resize: vertical; line-height: 1.5; padding: .6rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin: 1rem 0; }
+button, select { padding: .3rem .65rem; }
+#status { min-height: 1.5em; margin: .6rem 0; color: GrayText; }

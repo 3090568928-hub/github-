@@ -1,8 +1,35 @@
-# 沉浸式翻译 + GitHub 汉化
+# github中英实时翻译
 
-本地构建工具，适配 Edge 版沉浸式翻译 **1.35.2** 和 GitHub 中文汉化翻译插件 **3.1.4**。生成的扩展有一个工具栏图标，面板顶部可切换「沉浸式翻译」和「GitHub 汉化」。
+打开 GitHub 即可使用中文导航，英文 README 保留原文并自动显示红色中文译文。免费版和完整版使用各自的扩展 ID。切换版本时，请只启用其中一个，避免重复处理同一段正文。
 
-## 从仓库生成扩展
+## 免费版
+
+[下载免费版 ZIP](https://github.com/3090568928-hub/github-/releases/download/free-v1.0.0/github-translate-free-1.0.0.zip) · [免费版源码](free/) · [许可与上游组件](free/SOURCE.md)
+
+推荐使用当前版本的 Edge 或 Chrome，已在 Edge 157 实测。将 ZIP 解压，在扩展管理页打开「开发人员模式」，选择「加载解压缩的扩展」，选中包含 manifest.json 的目录。工具栏中的名称为「github中英实时翻译」，详情页的版本名标有「免费版」。已打开的网页需要刷新一次。
+
+- **GitHub 阅读**　自动翻译仓库正文和讨论内容，中文译文标为红色。菜单与按钮使用本地词典，可独立开关。面板可切回原文、选择中译英或英译中。其他网站默认手动翻译，也可以开启「始终翻译此站点」。
+- **文本与输入**　支持划词、Ctrl 悬停、侧栏文本翻译、Alt+I 和连续三次空格翻译输入框。Alt+A 留给微信截图。
+- **文档与字幕**　可翻译 TXT、Markdown、HTML、MHTML、JSON、DOCX、EPUB 和字幕文件。带文字层的 PDF 可导出带页码的双语 HTML。视频已有字幕时，可在支持的播放器中显示双语字幕。
+- **图片**　中英文 OCR 在本机执行，识别文字可以校对后再翻译。
+
+免费版无需注册、登录、订阅或填写 API 密钥。GitHub 菜单和图片识别可离线使用；需要翻译的文字会发送给微软的免费网页翻译服务，遇到故障时回退至谷歌。外部服务限流或断网时，面板会提示重试。免费版不包含沉浸式翻译的账号、会员、付费 AI、云端图片重绘或付费 PDF 程序。
+
+### 从源码构建免费版
+
+安装 Node.js 22 或以上版本，并确保系统可运行 tar。在仓库根目录执行：
+
+```powershell
+node build-free.mjs --out ../github-translate-free --zip ../github-translate-free-1.0.0.zip
+```
+
+首次构建从锁定的公开上游下载并校验依赖，后续复用本机缓存。运行扩展时无需下载可执行代码。输出目录和 ZIP 文件名应为新路径。
+
+## 完整版
+
+完整版使用本地安装的 Edge 版沉浸式翻译 **1.35.2** 和 GitHub 中文汉化翻译插件 **3.1.4**。一个工具栏面板可切换「沉浸式翻译」和「GitHub 汉化」。
+
+### 从仓库生成完整版
 
 在 Windows 上安装 Node.js 22 或以上版本，并在 Edge 默认配置中准备好上述两个版本的扩展。运行以下命令即可在仓库旁生成可加载的 `translation-bundle-local` 文件夹。
 
@@ -14,13 +41,13 @@ node build.mjs --out ..\translation-bundle-local
 
 如果扩展装在其他浏览器配置中，或已将原扩展解压到本地，请按下文「重新构建」中的示例指定两个输入目录。
 
-## 安装本地合并版
+### 安装本地完整版
 
 1. 打开 `edge://extensions`，先关闭原来的两个扩展，防止同一页被处理两次。保留原扩展便于切回和导出已有设置。
 2. 开启「开发人员模式」，点「加载解压缩的扩展」，选择生成的 **translation-bundle-local** 文件夹。该目录的第一层包含 `manifest.json`。
 3. 刷新已经打开的网页。固定新扩展后，点击图标可以使用两个面板。GitHub 面板的「内容翻译设置」打开汉化插件的设置页。
 
-Codex 内置浏览器使用独立的浏览器配置。如果它提供扩展管理界面，可在内置浏览器的 `chrome://extensions/` 中核对「沉浸式翻译 + GitHub 汉化」，本地合并版的 ID 是 `khpcnkicahklhbifadioigkkhbcjahaf`。从 ZIP 手动加载时先解压，选择包含 `manifest.json` 的目录。更新已加载的本地目录后，点扩展卡片上的「重新加载」，再刷新 GitHub 页面。[OpenAI 内置浏览器说明](https://help.openai.com/en/articles/20001277-using-the-built-in-browser-in-the-chatgpt-desktop-app)
+Codex 内置浏览器使用独立的浏览器配置。如果它提供扩展管理界面，可在内置浏览器的 `chrome://extensions/` 中核对「github中英实时翻译」，完整版的 ID 是 `khpcnkicahklhbifadioigkkhbcjahaf`。从 ZIP 手动加载时先解压，选择包含 `manifest.json` 的目录。更新已加载的本地目录后，点扩展卡片上的「重新加载」，再刷新 GitHub 页面。[OpenAI 内置浏览器说明](https://help.openai.com/en/articles/20001277-using-the-built-in-browser-in-the-chatgpt-desktop-app)
 
 打开 GitHub 仓库时，沉浸式翻译会自动处理英文正文，双语模式中的中文译文显示为原配置的红色 `#d32f2f`。GitHub 的导航、菜单和按钮由汉化模块处理。其他网页仍按各自的翻译设置工作。
 
@@ -76,4 +103,4 @@ GitHub 汉化的 12 个服务选项均通过了配置地址与后台转发的匹
 - [沉浸式翻译](https://github.com/immersive-translate/immersive-translate) · [终端用户许可协议](https://immersivetranslate.com/zh-Hans/docs/EULA/)
 - [GitHub 中文汉化翻译插件](https://github.com/MaydayV/github-chinese)
 
-本目录只含构建和集成代码。生成目录另含两个上游的程序文件，供本机使用。
+完整版的生成目录另含两个上游的程序文件，供本机使用。公开发布的免费版提供独立实现和对应源码。

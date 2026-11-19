@@ -68,9 +68,9 @@ async function build() {
     delete manifest.update_url;
     // Keep page translation available from the panel and leave Alt+A to WeChat.
     delete manifest.commands.toggleTranslatePage.suggested_key;
-    manifest.name = '沉浸式翻译 + GitHub 汉化';
-    manifest.short_name = '双语翻译与汉化';
-    manifest.version_name = '1.35.2 + GitHub 汉化 3.1.4';
+    manifest.name = 'github中英实时翻译';
+    manifest.short_name = 'github中英实时翻译';
+    manifest.version_name = '完整版 · 1.35.2 + GitHub 汉化 3.1.4';
     manifest.action.default_title = manifest.name;
     manifest.background.service_worker = 'bundle-worker.js';
     manifest.content_scripts.push({
