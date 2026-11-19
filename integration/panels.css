@@ -1,0 +1,24 @@
+.bundle-panels {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 8px;
+  color-scheme: light dark;
+  background: light-dark(#f4f5f7, #202226);
+  font: 600 13px/1.45 system-ui, sans-serif;
+}
+.bundle-panels > * {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: light-dark(#384354, #d4d9df);
+  text-align: center;
+  text-decoration: none;
+}
+.bundle-panels > [aria-current] {
+  background: light-dark(#fff, #373b41);
+  box-shadow: 0 1px 3px #0002;
+}
+.bundle-panels a:hover { text-decoration: underline; }
+.bundle-panels a:focus-visible { outline: 2px solid #3877cf; }
